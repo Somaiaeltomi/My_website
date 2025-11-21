@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك العطاء - تسجيل متطوع</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- الرأس -->
+    <header>
+        <nav class="container">
+            <div class="logo">بنك العطاء</div>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="register.html" class="active">تسجيل متطوع</a></li>
+                <li><a href="opportunity.html">فرص تطوع</a></li>
+                <li><a href="hours.html">تسجيل ساعات</a></li>
+                <li><a href="search.html">البحث</a></li>
+                <li><a href="calculator.html">الحاسبة</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="container main-content">
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 20px rgba(0,0,0,0.1);">
+            <h1 style="text-align: center; color: #2c3e50; margin-bottom: 2rem;">تسجيل متطوع جديد</h1>
+            
+            <form id="volunteerForm">
+                <!-- المعلومات الشخصية -->
+                <fieldset style="border: 2px solid #3498db; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #3498db; font-weight: bold; padding: 0 1rem;">المعلومات الشخصية</legend>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="fullName">الاسم الكامل *</label>
+                            <input type="text" id="fullName" name="fullName" class="form-control" required placeholder="أدخل الاسم الكامل">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني *</label>
+                            <input type="email" id="email" name="email" class="form-control" required placeholder="example@email.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف *</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required placeholder="05XXXXXXXX">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="birthDate">تاريخ الميلاد *</label>
+                            <input type="date" id="birthDate" name="birthDate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nationalId">رقم الهوية *</label>
+                            <input type="text" id="nationalId" name="nationalId" class="form-control" required placeholder="XXXXXXXXXXXXX">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="city">المدينة *</label>
+                            <select id="city" name="city" class="form-control" required>
+                                <option value="">اختر المدينة</option>
+                                <option value="riyadh">الرياض</option>
+                                <option value="jeddah">جدة</option>
+                                <option value="dammam">الدمام</option>
+                                <option value="mecca">مكة</option>
+                                <option value="medina">المدينة</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">العنوان التفصيلي</label>
+                        <textarea id="address" name="address" class="form-control" rows="3" placeholder="أدخل العنوان التفصيلي"></textarea>
+                    </div>
+                </fieldset>
+
+                <!-- المعلومات التعليمية والمهنية -->
+                <fieldset style="border: 2px solid #27ae60; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #27ae60; font-weight: bold; padding: 0 1rem;">المعلومات التعليمية والمهنية</legend>
+                    
+                    <div class="form-group">
+                        <label>المؤهل العلمي *</label>
+                        <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="radio" name="education" value="highschool" required> ثانوية عامة
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="radio" name="education" value="diploma"> دبلوم
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="radio" name="education" value="bachelor"> بكالوريوس
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="radio" name="education" value="master"> ماجستير
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="radio" name="education" value="phd"> دكتوراه
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="job">الوظيفة الحالية</label>
+                        <input type="text" id="job" name="job" class="form-control" placeholder="أدخل الوظيفة الحالية">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="skills">المهارات والخبرات</label>
+                        <textarea id="skills" name="skills" class="form-control" rows="3" placeholder="اذكر مهاراتك وخبراتك السابقة"></textarea>
+                    </div>
+                </fieldset>
+
+                <!-- مجالات الاهتمام -->
+                <fieldset style="border: 2px solid #e74c3c; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #e74c3c; font-weight: bold; padding: 0 1rem;">مجالات الاهتمام بالتطوع</legend>
+                    
+                    <div class="form-group">
+                        <label>اختر مجالات اهتمامك *</label>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="interests" value="education"> التعليم
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="interests" value="health"> الصحة
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="interests" value="environment"> البيئة
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="interests" value="social"> الخدمات الاجتماعية
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="interests" value="technology"> التكنولوجيا
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="interests" value="culture"> الثقافة والفنون
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="interests" value="sports"> الرياضة
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="interests" value="emergency"> الطوارئ والكوارث
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="availability">أوقات التفرغ *</label>
+                        <select id="availability" name="availability" class="form-control" required>
+                            <option value="">اختر أوقات التفرغ</option>
+                            <option value="morning">الصباح</option>
+                            <option value="evening">المساء</option>
+                            <option value="weekend">عطلة نهاية الأسبوع</option>
+                            <option value="flexible">مرن</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <!-- معلومات إضافية -->
+                <fieldset style="border: 2px solid #f39c12; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #f39c12; font-weight: bold; padding: 0 1rem;">معلومات إضافية</legend>
+                    
+                    <div class="form-group">
+                        <label for="experience">هل لديك خبرة سابقة في العمل التطوعي؟</label>
+                        <select id="experience" name="experience" class="form-control">
+                            <option value="">اختر الإجابة</option>
+                            <option value="yes">نعم</option>
+                            <option value="no">لا</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="previousWork">اذكر أعمالك التطوعية السابقة (إن وجدت)</label>
+                        <textarea id="previousWork" name="previousWork" class="form-control" rows="3" placeholder="اذكر تفاصيل عن أعمالك التطوعية السابقة"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cv">رفع السيرة الذاتية (اختياري)</label>
+                        <input type="file" id="cv" name="cv" class="form-control" accept=".pdf,.doc,.docx">
+                        <small style="color: #666;">الملفات المسموحة: PDF, DOC, DOCX (الحد الأقصى 5MB)</small>
+                    </div>
+                </fieldset>
+
+                <!-- الاتفاقيات -->
+                <div class="form-group" style="background: #ecf0f1; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-weight: normal;">
+                        <input type="checkbox" name="agreement" required style="margin-top: 0.25rem;">
+                        <span>أوافق على <a href="#" style="color: #3498db;">شروط وأحكام التطوع</a> وأتعهد بتقديم معلومات صحيحة ودقيقة *</span>
+                    </label>
+                    
+                    <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-weight: normal; margin-top: 1rem;">
+                        <input type="checkbox" name="newsletter" style="margin-top: 0.25rem;">
+                        <span>أرغب في استلام نشرة الأخبار والعروض التطوعية</span>
+                    </label>
+                </div>
+
+                <!-- أزرار الإرسال -->
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button type="submit" class="btn btn-success" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                        تسجيل المتطوع
+                    </button>
+                    <button type="reset" class="btn" style="padding: 1rem 2rem; font-size: 1.1rem; background: #95a5a6;">
+                        مسح النموذج
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 بنك العطاء. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

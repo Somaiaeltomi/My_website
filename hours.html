@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك العطاء - تسجيل ساعات التطوع</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- الرأس -->
+    <header>
+        <nav class="container">
+            <div class="logo">بنك العطاء</div>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="register.html">تسجيل متطوع</a></li>
+                <li><a href="opportunity.html">فرص تطوع</a></li>
+                <li><a href="hours.html" class="active">تسجيل ساعات</a></li>
+                <li><a href="search.html">البحث</a></li>
+                <li><a href="calculator.html">الحاسبة</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="container main-content">
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 20px rgba(0,0,0,0.1);">
+            <h1 style="text-align: center; color: #2c3e50; margin-bottom: 2rem;">تسجيل ساعات التطوع</h1>
+            
+            <form id="hoursForm">
+                <!-- اختيار المتطوع والفرصة -->
+                <fieldset style="border: 2px solid #3498db; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #3498db; font-weight: bold; padding: 0 1rem;">اختيار المتطوع والفرصة</legend>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="volunteerSelect">اختيار المتطوع *</label>
+                            <select id="volunteerSelect" name="volunteerSelect" class="form-control" required>
+                                <option value="">اختر المتطوع</option>
+                                <option value="vol1">أحمد محمد - 1051234567</option>
+                                <option value="vol2">فاطمة عبدالله - 1067654321</option>
+                                <option value="vol3">خالد سعيد - 1071239876</option>
+                                <option value="vol4">سارة علي - 1084561234</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="opportunitySelect">اختيار فرصة التطوع *</label>
+                            <select id="opportunitySelect" name="opportunitySelect" class="form-control" required>
+                                <option value="">اختر فرصة التطوع</option>
+                                <option value="opp1">التعليم الإلكتروني للأطفال</option>
+                                <option value="opp2">حملة تشجير المنتزهات</option>
+                                <option value="opp3">دعم كبار السن</option>
+                                <option value="opp4">توزيع وجبات إفطار</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customOpportunity">أو إدخال فرصة تطوع جديدة</label>
+                        <input type="text" id="customOpportunity" name="customOpportunity" class="form-control" placeholder="أدخل اسم فرصة التطوع الجديدة">
+                    </div>
+                </fieldset>
+
+                <!-- تفاصيل الساعات -->
+                <fieldset style="border: 2px solid #27ae60; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #27ae60; font-weight: bold; padding: 0 1rem;">تفاصيل الساعات</legend>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="workDate">تاريخ التطوع *</label>
+                            <input type="date" id="workDate" name="workDate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="startTime">وقت البدء *</label>
+                            <input type="time" id="startTime" name="startTime" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="endTime">وقت الانتهاء *</label>
+                            <input type="time" id="endTime" name="endTime" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="totalHours">إجمالي الساعات *</label>
+                            <input type="number" id="totalHours" name="totalHours" class="form-control" required min="0.5" max="24" step="0.5" placeholder="0.0">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="breakTime">وقت الراحة (بالدقائق)</label>
+                        <input type="number" id="breakTime" name="breakTime" class="form-control" min="0" max="180" placeholder="0">
+                        <small style="color: #666;">أدخل وقت الراحة بالدقائق إن وجد</small>
+                    </div>
+                </fieldset>
+
+                <!-- وصف العمل -->
+                <fieldset style="border: 2px solid #e74c3c; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #e74c3c; font-weight: bold; padding: 0 1rem;">وصف العمل المنفذ</legend>
+                    
+                    <div class="form-group">
+                        <label for="workDescription">وصف المهام المنفذة *</label>
+                        <textarea id="workDescription" name="workDescription" class="form-control" rows="4" required placeholder="صف المهام والأنشطة التي قام بها المتطوع"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="achievements">الإنجازات المتحققة</label>
+                        <textarea id="achievements" name="achievements" class="form-control" rows="3" placeholder="ما هي الإنجازات التي تحققت خلال التطوع؟"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="challenges">التحديات التي واجهها</label>
+                        <textarea id="challenges" name="challenges" class="form-control" rows="2" placeholder="ما هي التحديات التي واجهها المتطوع؟"></textarea>
+                    </div>
+                </fieldset>
+
+                <!-- التقييم والمرفقات -->
+                <fieldset style="border: 2px solid #f39c12; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #f39c12; font-weight: bold; padding: 0 1rem;">التقييم والمرفقات</legend>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="performanceRating">تقييم الأداء *</label>
+                            <select id="performanceRating" name="performanceRating" class="form-control" required>
+                                <option value="">اختر التقييم</option>
+                                <option value="excellent">ممتاز</option>
+                                <option value="very-good">جيد جداً</option>
+                                <option value="good">جيد</option>
+                                <option value="average">متوسط</option>
+                                <option value="needs-improvement">يحتاج تحسين</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="supervisor">المشرف المسؤول *</label>
+                            <input type="text" id="supervisor" name="supervisor" class="form-control" required placeholder="اسم المشرف المسؤول">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="supervisorComments">ملاحظات المشرف</label>
+                        <textarea id="supervisorComments" name="supervisorComments" class="form-control" rows="3" placeholder="ملاحظات المشرف على أداء المتطوع"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="attachments">المرفقات (اختياري)</label>
+                        <input type="file" id="attachments" name="attachments" class="form-control" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                        <small style="color: #666;">يمكن رفع عدة ملفات: صور، مستندات، شهادات (الحد الأقصى 10MB)</small>
+                    </div>
+                </fieldset>
+
+                <!-- تأكيد التسجيل -->
+                <fieldset style="border: 2px solid #9b59b6; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #9b59b6; font-weight: bold; padding: 0 1rem;">تأكيد التسجيل</legend>
+                    
+                    <div class="form-group">
+                        <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-weight: normal;">
+                            <input type="checkbox" name="confirmation" required style="margin-top: 0.25rem;">
+                            <span>أؤكد أن جميع المعلومات المذكورة صحيحة ودقيقة *</span>
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-weight: normal;">
+                            <input type="checkbox" name="approval" required style="margin-top: 0.25rem;">
+                            <span>أوافق على تسجيل الساعات في سجل المتطوع *</span>
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="volunteerSignature">توقيع المتطوع (كتابة الاسم)</label>
+                        <input type="text" id="volunteerSignature" name="volunteerSignature" class="form-control" placeholder="اكتب اسمك الكامل للتوقيع">
+                    </div>
+                </fieldset>
+
+                <!-- أزرار الإرسال -->
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button type="button" onclick="registerHours()" class="btn btn-success" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                     تسجيل الساعات
+                    </button>
+                 <button type="reset" class="btn" style="padding: 1rem 2rem; font-size: 1.1rem; background: #95a5a6;">
+                     مسح النموذج
+                 </button>
+                <button type="button" onclick="saveAndCalculateHours()" class="btn" style="padding: 1rem 2rem; font-size: 1.1rem; background: #3498db;">
+                حفظ وحساب الساعات
+               </button>
+               </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 بنك العطاء. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

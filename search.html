@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك العطاء - البحث عن فرص التطوع</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .search-results {
+            margin-top: 2rem;
+        }
+        .opportunity-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-right: 4px solid #3498db;
+        }
+        .opportunity-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+        .opportunity-header {
+            display: flex;
+            justify-content: between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+        .opportunity-title {
+            color: #2c3e50;
+            margin: 0;
+            flex: 1;
+        }
+        .opportunity-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .meta-item {
+            background: #ecf0f1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: #2c3e50;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+        .page-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .page-btn.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+        .filter-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- الرأس -->
+    <header>
+        <nav class="container">
+            <div class="logo">بنك العطاء</div>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="register.html">تسجيل متطوع</a></li>
+                <li><a href="opportunity.html">فرص تطوع</a></li>
+                <li><a href="hours.html">تسجيل ساعات</a></li>
+                <li><a href="search.html" class="active">البحث</a></li>
+                <li><a href="calculator.html">الحاسبة</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="container main-content">
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 20px rgba(0,0,0,0.1);">
+            <h1 style="text-align: center; color: #2c3e50; margin-bottom: 2rem;">البحث عن فرص التطوع</h1>
+            
+            <!-- نموذج البحث -->
+            <form id="searchForm">
+                <div class="filter-section">
+                    <h3 style="color: #2c3e50; margin-bottom: 1rem;">🔍 بحث متقدم</h3>
+                    
+                    <div class="form-group">
+                        <label for="searchKeyword">كلمة البحث</label>
+                        <input type="text" id="searchKeyword" name="searchKeyword" class="form-control" placeholder="ابحث في فرص التطوع...">
+                    </div>
+                    
+                    <div class="filter-row">
+                        <div class="form-group">
+                            <label for="searchCategory">التصنيف</label>
+                            <select id="searchCategory" name="searchCategory" class="form-control">
+                                <option value="">جميع التصنيفات</option>
+                                <option value="education">التعليم</option>
+                                <option value="health">الصحة</option>
+                                <option value="environment">البيئة</option>
+                                <option value="social">الخدمات الاجتماعية</option>
+                                <option value="technology">التكنولوجيا</option>
+                                <option value="culture">الثقافة والفنون</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="searchCity">المدينة</label>
+                            <select id="searchCity" name="searchCity" class="form-control">
+                                <option value="">جميع المدن</option>
+                                <option value="riyadh">الرياض</option>
+                                <option value="jeddah">جدة</option>
+                                <option value="dammam">الدمام</option>
+                                <option value="mecca">مكة</option>
+                                <option value="medina">المدينة</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="searchType">نوع التطوع</label>
+                            <select id="searchType" name="searchType" class="form-control">
+                                <option value="">جميع الأنواع</option>
+                                <option value="individual">فردي</option>
+                                <option value="group">جماعي</option>
+                                <option value="remote">عن بُعد</option>
+                                <option value="field">ميداني</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-row">
+                        <div class="form-group">
+                            <label for="dateFrom">من تاريخ</label>
+                            <input type="date" id="dateFrom" name="dateFrom" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dateTo">إلى تاريخ</label>
+                            <input type="date" id="dateTo" name="dateTo" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hoursRange">عدد الساعات</label>
+                            <select id="hoursRange" name="hoursRange" class="form-control">
+                                <option value="">أي عدد ساعات</option>
+                                <option value="1-10">1-10 ساعات</option>
+                                <option value="11-20">11-20 ساعة</option>
+                                <option value="21-50">21-50 ساعة</option>
+                                <option value="51+">أكثر من 50 ساعة</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-row">
+                        <div class="form-group">
+                            <label for="skillsFilter">المهارات المطلوبة</label>
+                            <select id="skillsFilter" name="skillsFilter" class="form-control">
+                                <option value="">أي مهارات</option>
+                                <option value="communication">التواصل</option>
+                                <option value="leadership">القيادة</option>
+                                <option value="technical">مهارات تقنية</option>
+                                <option value="language">لغات أجنبية</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="ageGroup">الفئة العمرية</label>
+                            <select id="ageGroup" name="ageGroup" class="form-control">
+                                <option value="">جميع الأعمار</option>
+                                <option value="15-25">15-25 سنة</option>
+                                <option value="26-35">26-35 سنة</option>
+                                <option value="36-50">36-50 سنة</option>
+                                <option value="50+">50+ سنة</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sortBy">ترتيب النتائج حسب</label>
+                            <select id="sortBy" name="sortBy" class="form-control">
+                                <option value="newest">الأحدث أولاً</option>
+                                <option value="oldest">الأقدم أولاً</option>
+                                <option value="hours">عدد الساعات</option>
+                                <option value="deadline">موعد الانتهاء</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- خيارات البحث الإضافية -->
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <h4 style="color: #2c3e50; margin-bottom: 1rem;">خيارات إضافية</h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="urgent" value="1">
+                            <span>فرص عاجلة فقط</span>
+                        </label>
+                        
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="training" value="1">
+                            <span>توفير تدريب</span>
+                        </label>
+                        
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="certificate" value="1">
+                            <span>شهادة تقدير</span>
+                        </label>
+                        
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="remote" value="1">
+                            <span>عمل عن بُعد</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- أزرار البحث -->
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                     <button type="button" onclick="performSearch()" class="btn btn-success" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                         🔍 بحث عن الفرص
+                     </button>
+
+
+
+
+                    <button type="reset" class="btn" style="padding: 1rem 2rem; font-size: 1.1rem; background: #95a5a6;">
+                        مسح الفلاتر
+                    </button>
+                    <button type="button" id="advancedToggle" class="btn" style="padding: 1rem 2rem; font-size: 1.1rem; background: #3498db;">
+                        خيارات متقدمة
+                    </button>
+                </div>
+            </form>
+
+            <!-- نتائج البحث -->
+            <div class="search-results" id="searchResults">
+                <div style="text-align: center; padding: 2rem; color: #666;">
+                    <h3>أدخل معايير البحث لعرض النتائج</h3>
+                    <p>استخدم نموذج البحث أعلاه للعثور على فرص التطوع المناسبة لك</p>
+                </div>
+            </div>
+
+            <!-- الترقيم -->
+            <div class="pagination" id="pagination" style="display: none;">
+                <button class="page-btn">السابق</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">التالي</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 بنك العطاء. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

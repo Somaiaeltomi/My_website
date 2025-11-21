@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك العطاء - حاسبة التقديرات</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            .calculator-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .calculator-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        .calculator-result {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+        .level-badge {
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .level-beginner {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+        }
+        .level-intermediate {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            color: white;
+        }
+        .level-advanced {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            color: white;
+        }
+        .level-expert {
+            background: linear-gradient(135deg, #fdcb6e, #e17055);
+            color: white;
+        }
+        .level-master {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+        }
+        .progress-container {
+            background: #ecf0f1;
+            border-radius: 10px;
+            height: 20px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .stat-label {
+            font-size: 0.875rem;
+            color: #7f8c8d;
+        }
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+        .benefits-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        .benefits-list li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- الرأس -->
+    <header>
+        <nav class="container">
+            <div class="logo">بنك العطاء</div>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="register.html">تسجيل متطوع</a></li>
+                <li><a href="opportunity.html">فرص تطوع</a></li>
+                <li><a href="hours.html">تسجيل ساعات</a></li>
+                <li><a href="search.html">البحث</a></li>
+                <li><a href="calculator.html" class="active">الحاسبة</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="container main-content">
+        <h1 style="text-align: center; color: #2c3e50; margin-bottom: 1rem;">حاسبة التقديرات التطوعية</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 2rem; font-size: 1.1rem;">
+            احسب مستواك التطوعي واكتشف الإنجازات التي حققتها في رحلة العطاء
+        </p>
+        
+        <div class="calculator-container">
+            <!-- نموذج الحاسبة -->
+            <div class="calculator-form">
+                <form id="calculatorForm">
+                    <fieldset style="border: 2px solid #3498db; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                        <legend style="color: #3498db; font-weight: bold; padding: 0 1rem;">المعلومات الأساسية</legend>
+                        
+                        <div class="form-group">
+                            <label for="volunteerName">اسم المتطوع (اختياري)</label>
+                            <input type="text" id="volunteerName" name="volunteerName" class="form-control" placeholder="أدخل اسمك للحصول على نتائج مخصصة">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="totalHours">إجمالي ساعات التطوع *</label>
+                            <input type="number" id="totalHours" name="totalHours" class="form-control" required min="0" step="0.5" placeholder="أدخل عدد الساعات الكلي">
+                            <small style="color: #666;">يمكنك إدخال كسور الساعات (مثل 12.5 ساعة)</small>
+                        </div>
+                    </fieldset>
+
+                    <fieldset style="border: 2px solid #27ae60; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                        <legend style="color: #27ae60; font-weight: bold; padding: 0 1rem;">نوعية التطوع</legend>
+                        
+                        <div class="form-group">
+                            <label>مجالات التطوع التي شاركت فيها</label>
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 0.5rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="volunteerFields" value="education">
+                                    <span>التعليم والتدريس</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="volunteerFields" value="health">
+                                    <span>الصحة والإغاثة</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="volunteerFields" value="environment">
+                                    <span>البيئة والتنمية</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="volunteerFields" value="social">
+                                    <span>الخدمات الاجتماعية</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="volunteerFields" value="technology">
+                                    <span>التكنولوجيا والابتكار</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteerDuration">مدة التطوع (بالأشهر)</label>
+                            <input type="number" id="volunteerDuration" name="volunteerDuration" class="form-control" min="0" placeholder="عدد الأشهر">
+                        </div>
+                    </fieldset>
+
+                    <fieldset style="border: 2px solid #e74c3c; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                        <legend style="color: #e74c3c; font-weight: bold; padding: 0 1rem;">المهارات المكتسبة</legend>
+                        
+                        <div class="form-group">
+                            <label>اختر المهارات التي طورتها خلال التطوع</label>
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 0.5rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="skills" value="leadership">
+                                    <span>مهارات القيادة</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="skills" value="communication">
+                                    <span>التواصل والتفاوض</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="skills" value="teamwork">
+                                    <span>العمل الجماعي</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="skills" value="problem_solving">
+                                    <span>حل المشكلات</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="skills" value="planning">
+                                    <span>التخطيط والتنظيم</span>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset style="border: 2px solid #f39c12; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                        <legend style="color: #f39c12; font-weight: bold; padding: 0 1rem;">الإنجازات الخاصة</legend>
+                        
+                        <div class="form-group">
+                            <label for="achievementsCount">عدد المشاريع/المبادرات التي قمت بها</label>
+                            <input type="number" id="achievementsCount" name="achievementsCount" class="form-control" min="0" placeholder="عدد المشاريع">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="trainingHours">ساعات التدريب التي قدمتها (إن وجدت)</label>
+                            <input type="number" id="trainingHours" name="trainingHours" class="form-control" min="0" placeholder="ساعات التدريب">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-weight: normal;">
+                                <input type="checkbox" name="recognition" value="1">
+                                <span>هل حصلت على شهادات تقدير أو جوائز تطوعية؟</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- أزرار الحاسبة -->
+                   <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                      <button type="button" onclick="calculateLevel()" class="btn btn-success" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                      🧮 حساب المستوى
+                      </button>
+                      <button type="reset" class="btn" style="padding: 1rem 2rem; font-size: 1.1rem; background: #95a5a6;">
+                       مسح البيانات
+                     </button>
+                     <button type="button" onclick="saveResults()" class="btn" style="padding: 1rem 2rem; font-size: 1.1rem; background: #3498db;">
+                     💾 حفظ النتائج
+                    </button>
+                </div>
+                </form>
+            </div>
+
+            <!-- نتائج الحاسبة -->
+            <div class="calculator-result" id="calculatorResult">
+                <div style="text-align: center; color: #666; width: 100%;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
+                    <h3>نتيجة التقييم</h3>
+                    <p>ستظهر هنا نتيجة تقييمك بعد إدخال البيانات</p>
+                    <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                        <h4>مستويات التقييم:</h4>
+                        <div style="text-align: right; font-size: 0.9rem;">
+                            <div>⭐ مبتدئ: 1-49 ساعة</div>
+                            <div>⭐⭐ متوسط: 50-149 ساعة</div>
+                            <div>⭐⭐⭐ متقدم: 150-299 ساعة</div>
+                            <div>⭐⭐⭐⭐ خبير: 300-499 ساعة</div>
+                            <div>⭐⭐⭐⭐⭐ محترف: 500+ ساعة</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- إحصائيات إضافية -->
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 20px rgba(0,0,0,0.1); margin-top: 2rem;">
+            <h3 style="text-align: center; color: #2c3e50; margin-bottom: 2rem;">📈 إحصائيات التطوع العامة</h3>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">1,247</div>
+                    <div class="stat-label">متطوع نشط</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">45,892</div>
+                    <div class="stat-label">ساعة تطوع</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">156</div>
+                    <div class="stat-label">فرصة تطوع</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">89%</div>
+                    <div class="stat-label">رضا المتطوعين</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <h4 style="color: #2c3e50; margin-bottom: 1rem;">فوائد التطوع:</h4>
+                <ul class="benefits-list">
+                    <li>تطوير المهارات الشخصية والمهنية</li>
+                    <li>بناء شبكة علاقات مهنية واجتماعية</li>
+                    <li>اكتساب خبرات عملية قيّمة</li>
+                    <li>تحسين الصحة النفسية والرضا الذاتي</li>
+                    <li>الحصول على شهادات خبرة معتمدة</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 بنك العطاء. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

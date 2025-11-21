@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك العطاء - تسجيل فرصة تطوع</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- الرأس -->
+    <header>
+        <nav class="container">
+            <div class="logo">بنك العطاء</div>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="register.html">تسجيل متطوع</a></li>
+                <li><a href="opportunity.html" class="active">فرص تطوع</a></li>
+                <li><a href="hours.html">تسجيل ساعات</a></li>
+                <li><a href="search.html">البحث</a></li>
+                <li><a href="calculator.html">الحاسبة</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="container main-content">
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 20px rgba(0,0,0,0.1);">
+            <h1 style="text-align: center; color: #2c3e50; margin-bottom: 2rem;">تسجيل فرصة تطوع جديدة</h1>
+            
+            <form id="opportunityForm">
+                <!-- معلومات الفرصة الأساسية -->
+                <fieldset style="border: 2px solid #3498db; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #3498db; font-weight: bold; padding: 0 1rem;">معلومات الفرصة الأساسية</legend>
+                    
+                    <div class="form-group">
+                        <label for="opportunityTitle">عنوان الفرصة *</label>
+                        <input type="text" id="opportunityTitle" name="opportunityTitle" class="form-control" required placeholder="أدخل عنوان الفرصة التطوعية">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="opportunityDescription">وصف الفرصة *</label>
+                        <textarea id="opportunityDescription" name="opportunityDescription" class="form-control" rows="4" required placeholder="صف الفرصة التطوعية بالتفصيل"></textarea>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="opportunityType">نوع الفرصة *</label>
+                            <select id="opportunityType" name="opportunityType" class="form-control" required>
+                                <option value="">اختر نوع الفرصة</option>
+                                <option value="individual">فردي</option>
+                                <option value="group">جماعي</option>
+                                <option value="remote">عن بُعد</option>
+                                <option value="field">ميداني</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category">التصنيف *</label>
+                            <select id="category" name="category" class="form-control" required>
+                                <option value="">اختر التصنيف</option>
+                                <option value="education">التعليم</option>
+                                <option value="health">الصحة</option>
+                                <option value="environment">البيئة</option>
+                                <option value="social">الخدمات الاجتماعية</option>
+                                <option value="technology">التكنولوجيا</option>
+                                <option value="culture">الثقافة والفنون</option>
+                                <option value="sports">الرياضة</option>
+                                <option value="emergency">الطوارئ</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- التفاصيل الزمنية -->
+                <fieldset style="border: 2px solid #27ae60; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #27ae60; font-weight: bold; padding: 0 1rem;">التفاصيل الزمنية</legend>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="startDate">تاريخ البدء *</label>
+                            <input type="date" id="startDate" name="startDate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="endDate">تاريخ الانتهاء *</label>
+                            <input type="date" id="endDate" name="endDate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="applicationDeadline">آخر موعد للتقديم *</label>
+                            <input type="date" id="applicationDeadline" name="applicationDeadline" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="totalHours">إجمالي الساعات المتوقعة *</label>
+                            <input type="number" id="totalHours" name="totalHours" class="form-control" required min="1" placeholder="عدد الساعات">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteersNeeded">عدد المتطوعين المطلوب *</label>
+                            <input type="number" id="volunteersNeeded" name="volunteersNeeded" class="form-control" required min="1" placeholder="عدد المتطوعين">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="schedule">الجدول الزمني</label>
+                        <textarea id="schedule" name="schedule" class="form-control" rows="3" placeholder="وصف الجدول الزمني والأوقات المتوقعة"></textarea>
+                    </div>
+                </fieldset>
+
+                <!-- المتطلبات والمهارات -->
+                <fieldset style="border: 2px solid #e74c3c; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #e74c3c; font-weight: bold; padding: 0 1rem;">المتطلبات والمهارات</legend>
+                    
+                    <div class="form-group">
+                        <label>المهارات المطلوبة *</label>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="requiredSkills" value="communication"> التواصل
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="requiredSkills" value="leadership"> القيادة
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="requiredSkills" value="technical"> مهارات تقنية
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="requiredSkills" value="language"> لغات أجنبية
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="requiredSkills" value="creative"> إبداعية
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" name="requiredSkills" value="physical"> بدنية
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ageRange">الفئة العمرية المستهدفة</label>
+                        <select id="ageRange" name="ageRange" class="form-control">
+                            <option value="">جميع الأعمار</option>
+                            <option value="15-25">15-25 سنة</option>
+                            <option value="26-35">26-35 سنة</option>
+                            <option value="36-50">36-50 سنة</option>
+                            <option value="50+">50+ سنة</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="qualifications">المؤهلات المطلوبة</label>
+                        <textarea id="qualifications" name="qualifications" class="form-control" rows="3" placeholder="المؤهلات العلمية أو المهنية المطلوبة"></textarea>
+                    </div>
+                </fieldset>
+
+                <!-- معلومات المنظمة -->
+                <fieldset style="border: 2px solid #f39c12; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #f39c12; font-weight: bold; padding: 0 1rem;">معلومات المنظمة</legend>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="organizationName">اسم المنظمة *</label>
+                            <input type="text" id="organizationName" name="organizationName" class="form-control" required placeholder="اسم المنظمة أو المؤسسة">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="organizationType">نوع المنظمة *</label>
+                            <select id="organizationType" name="organizationType" class="form-control" required>
+                                <option value="">اختر نوع المنظمة</option>
+                                <option value="governmental">حكومية</option>
+                                <option value="nonprofit">غير ربحية</option>
+                                <option value="private">خاصة</option>
+                                <option value="community">مجتمعية</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contactPerson">الشخص المسؤول *</label>
+                        <input type="text" id="contactPerson" name="contactPerson" class="form-control" required placeholder="اسم الشخص المسؤول">
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="contactEmail">البريد الإلكتروني *</label>
+                            <input type="email" id="contactEmail" name="contactEmail" class="form-control" required placeholder="email@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactPhone">رقم الهاتف *</label>
+                            <input type="tel" id="contactPhone" name="contactPhone" class="form-control" required placeholder="05XXXXXXXX">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">موقع التطوع *</label>
+                        <textarea id="location" name="location" class="form-control" rows="2" required placeholder="عنوان موقع التطوع"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="website">الموقع الإلكتروني (اختياري)</label>
+                        <input type="url" id="website" name="website" class="form-control" placeholder="https://example.com">
+                    </div>
+                </fieldset>
+
+                <!-- معلومات إضافية -->
+                <fieldset style="border: 2px solid #9b59b6; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <legend style="color: #9b59b6; font-weight: bold; padding: 0 1rem;">معلومات إضافية</legend>
+                    
+                    <div class="form-group">
+                        <label for="benefits">الفوائد والمزايا</label>
+                        <textarea id="benefits" name="benefits" class="form-control" rows="3" placeholder="ما هي الفوائد التي سيحصل عليها المتطوعون؟"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="training">التدريب المقدم</label>
+                        <textarea id="training" name="training" class="form-control" rows="2" placeholder="هل سيتم تقديم تدريب للمتطوعين؟"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="materials">المواد والمعدات</label>
+                        <textarea id="materials" name="materials" class="form-control" rows="2" placeholder="المواد والمعدات التي سيتم توفيرها"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additionalInfo">معلومات إضافية</label>
+                        <textarea id="additionalInfo" name="additionalInfo" class="form-control" rows="3" placeholder="أي معلومات إضافية تريد إضافتها"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="opportunityImage">صورة الفرصة (اختياري)</label>
+                        <input type="file" id="opportunityImage" name="opportunityImage" class="form-control" accept="image/*">
+                        <small style="color: #666;">الصور المسموحة: JPG, PNG, GIF (الحد الأقصى 5MB)</small>
+                    </div>
+                </fieldset>
+
+                <!-- أزرار الإرسال -->
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+    <button type="button" onclick="publishOpportunity()" class="btn btn-success" style="padding: 1rem 2rem; font-size: 1.1rem;">
+        نشر فرصة التطوع
+    </button>
+    <button type="reset" class="btn" style="padding: 1rem 2rem; font-size: 1.1rem; background: #95a5a6;">
+        مسح النموذج
+    </button>
+    <button type="button" onclick="saveAsDraft()" class="btn" style="padding: 1rem 2rem; font-size: 1.1rem; background: #3498db;">
+        حفظ كمسودة
+    </button>
+</div>
+            </form>
+        </div>
+    </main>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 بنك العطاء. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
